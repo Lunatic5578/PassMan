@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .my-container {
+    @apply container px-40 py-8 mx-auto;
+  }
+  .app-container{
+    height: 100vh;
+  }
+  .logo{
+    @apply hover:invert-0 text-black
+  }
+  .bg{
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(195,124,240,1) 100%) 
+  }
+  .ph{
+    height: 100vh;
+  }
+}
+
