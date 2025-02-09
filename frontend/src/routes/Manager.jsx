@@ -23,7 +23,7 @@ const Manager = () => {
 
   // Fetch passwords based on the userId
   const getPass = async () => { 
-    let req = await fetch(`http://127.0.0.1:3000/api/passwords?userId=${userId}`);
+    let req = await fetch(`https://passman0.onrender.com/api/passwords?userId=${userId}`);
     let passwords = await req.json();
     setPasswordArray(passwords);
   };
@@ -42,7 +42,7 @@ const Manager = () => {
       setPasswordArray([...passwordArray, passwordToSave]);
 
       // Save password to backend
-      await fetch("http://127.0.0.1:3000/api/passwords", {
+      await fetch("https://passman0.onrender.com/api/passwords", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(passwordToSave),
@@ -81,7 +81,7 @@ const Manager = () => {
       setPasswordArray(passwordArray.filter((item) => item.id !== id));
       
       // Delete password from backend
-      await fetch("http://127.0.0.1:3000/api/passwords", {
+      await fetch("https://passman0.onrender.com/api/passwords", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: id, userId }),  // Include userId to prevent unauthorized deletion
@@ -104,7 +104,7 @@ const Manager = () => {
     console.log("editing pass with id:"+id);
     setform(passwordArray.filter(i=>i.id===id)[0])
     setPasswordArray(passwordArray.filter(item=>item.id!==id))
-    await fetch("http://127.0.0.1:3000/api/passwords", {
+    await fetch("https://passman0.onrender.com/api/passwords", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: id, userId }),  // Include userId to prevent unauthorized deletion

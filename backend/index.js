@@ -21,7 +21,7 @@ const _dirname=path.resolve()
 
 app.use(bodyParser.json());
 
-const allowedOrigins = [process.env.CLIENT_URL || "http://localhost:5173"];
+const allowedOrigins = [process.env.CLIENT_URL];
 
 app.use(cors({
     origin: allowedOrigins,
