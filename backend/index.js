@@ -19,6 +19,10 @@ const app = express();
 
 const _dirname=path.resolve()
 
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 app.use(bodyParser.json());
 
 const allowedOrigins = [process.env.CLIENT_URL];
