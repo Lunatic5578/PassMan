@@ -21,9 +21,10 @@ const Manager = () => {
   const [form, setform] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
 
+  const backendurl=import.meta.env.VITE_BACKEND_URL || " http://127.0.0.1:3000"; 
   // Fetch passwords based on the userId
   const getPass = async () => { 
-    let req = await fetch(`https://passman0.onrender.com/api/passwords?userId=${userId}`);
+    let req = await fetch(`${backendurl}/api/passwords?userId=${userId}`);
     let passwords = await req.json();
     setPasswordArray(passwords);
   };
@@ -31,7 +32,7 @@ const Manager = () => {
   // Ensure to refetch passwords when userId changes
   useEffect(() => {
     if (session?.user?.id) {
-      console.log("User ID from session:", session.user.id);
+      //console.log("User ID from session:", session.user.id);
       getPass();
     }
   }, [session]);
@@ -48,7 +49,7 @@ const Manager = () => {
         body: JSON.stringify(passwordToSave),
       });
 
-      console.log("pass array from frontend:",[...passwordArray, passwordToSave]);
+      //console.log("pass array from frontend:",[...passwordArray, passwordToSave]);
       setform({ site: "", username: "", password: "" });
       toast("✅ Password saved!", {
         position: "top-right",
@@ -75,7 +76,7 @@ const Manager = () => {
   };
 
   const delPass = async (id) => {
-    console.log("deleting pass with id:" + id);
+    //console.log("deleting pass with id:" + id);
     let c = confirm("Do you really want to delete this?");
     if (c) {
       setPasswordArray(passwordArray.filter((item) => item.id !== id));
@@ -101,7 +102,7 @@ const Manager = () => {
   };
 
   const editPass = async(id) => {
-    console.log("editing pass with id:"+id);
+    //console.log("editing pass with id:"+id);
     setform(passwordArray.filter(i=>i.id===id)[0])
     setPasswordArray(passwordArray.filter(item=>item.id!==id))
     await fetch("https://passman0.onrender.com/api/passwords", {
