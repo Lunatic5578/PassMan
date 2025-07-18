@@ -11,7 +11,7 @@ const Manager = () => {
 
   const {session}=UserAuth()
   useEffect(() => {
-    console.log("User session updated:", session);
+    //console.log("User session updated:", session);
   }, [session]);
 
   const userId=session.user.id;
